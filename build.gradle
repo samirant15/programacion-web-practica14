@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.juandiii'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-mail:2.1.6.RELEASE'
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.projectlombok:lombok'
+//	implementation 'org.hibernate:hibernate-core'
+//	implementation 'org.hibernate:hibernate-entitymanager'
+	implementation('org.springframework.session:spring-session-core')
+	implementation('org.springframework.session:spring-session-hazelcast')
+	implementation('com.hazelcast:hazelcast-hibernate5')
+	implementation 'org.springframework:spring-context-support:5.1.8.RELEASE'
+	implementation group: 'com.h2database', name: 'h2', version: '1.4.192'
+//	implementation 'javax.xml.bind:jaxb-api:2.3.0'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
