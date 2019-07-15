@@ -1,7 +1,5 @@
 package com.juandiii.practica13.service;
 
-import com.hazelcast.core.HazelcastInstance;
-import com.juandiii.practica13.HazelcastHttpSessionConfig;
 import com.juandiii.practica13.data.User;
 import com.juandiii.practica13.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +15,6 @@ public class UserService {
 
     @Autowired
     private EmailService emailService;
-
-    @Autowired
-    HazelcastInstance instance;
 
     public Optional<User> getUser(String id) {
         return userRepository.findById(id);
