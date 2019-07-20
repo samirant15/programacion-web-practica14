@@ -4,25 +4,40 @@ services:
   app-service:
     restart: always
     image: docker.juandiii.com/app
+    environment:
+      - SERVER_PORT=8080
     ports:
       - "8080"
 
   app2-service:
     restart: always
     image: docker.juandiii.com/app
+    environment:
+      - SERVER_PORT=8081
     ports:
       - "8081"
 
   app3-service:
     restart: always
     image: docker.juandiii.com/app
+    environment:
+      - SERVER_PORT=8082
     ports:
       - "8082"
 
   ha-proxy:
     restart: always
+    depends_on:
+      - app-service
+      - app2-service
+      - app3-service
     image: haproxy:2.0.2
     volumes:
-    - ./etc:/usr/local/etc/haproxy
+      - ./etc:/usr/local/etc/haproxy
     ports:
       - "80:80"
+
+networks:
+  default:
+    external:
+      name: docker_default
