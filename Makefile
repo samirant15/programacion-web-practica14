@@ -31,3 +31,19 @@ help:
 install:
 	@echo 'gradle build'
 	@docker run --rm -u $(shell id -u):$(shell id -g) -v $(shell pwd):/home/gradle/project -w /home/gradle/project gradle gradle build
+
+# build
+image:
+	@echo 'docker build image'
+	@docker build -t docker.juandiii.com/app .
+
+## push
+push:
+	@echo 'push docker image'
+	@docker push docker.juandiii.com/app:latest
+
+
+## pull
+pull:
+	@echo 'pull docker image'
+	@docker pull docker.juandiii.com/app:latest
