@@ -36,9 +36,6 @@ public class LoginController {
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
     public ModelAndView login(@Valid User user, BindingResult result) {
-
-
-
         System.out.println(user.getUsername() + " " +  user.getPassword());
 
 //        User userExists = userService.getUserByUsername(user.getUsername());
