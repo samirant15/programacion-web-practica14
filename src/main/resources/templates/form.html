@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Práctica 14 - Programación Web</title>
@@ -15,7 +15,7 @@
 <div class="bs-component">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">PWEB FORMS</a>
-        <a class="navbar-brand" href="#" style="right: 0;position: fixed;">example@example.com</a>
+        <a class="navbar-brand" href="#" style="right: 0;position: fixed;" th:text="${user.username}"></a>
     </nav>
     <div class="card" style="margin-left: 25%;margin-right: 25%;margin-top: 5%;">
         <div class="card-body">

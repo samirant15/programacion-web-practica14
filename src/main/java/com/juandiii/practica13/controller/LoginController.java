@@ -56,7 +56,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
-    public ModelAndView login(@Valid User user, BindingResult result) {
+    public String login(@Valid User user, BindingResult result) {
 
 
         Authentication authentication = authenticationManager.authenticate(
@@ -72,6 +72,7 @@ public class LoginController {
         modelAndView.addObject("user", userExists);
 
         modelAndView.setViewName("form");
-        return modelAndView;
+
+        return "redirect:/form";
     }
 }
