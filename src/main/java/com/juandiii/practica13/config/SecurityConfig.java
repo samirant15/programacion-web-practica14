@@ -26,17 +26,17 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final CustomUserDetailsService userDetailsService;
-
-    public SecurityConfig(BCryptPasswordEncoder bCryptPasswordEncoder, CustomUserDetailsService userDetailsService) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userDetailsService = userDetailsService;
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
+
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
@@ -47,19 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder);
+                .passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf()
-                .disable()
-                .exceptionHandling()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+        http
                 .authorizeRequests()
                 .antMatchers("/",
                         "/favicon.ico",
@@ -80,7 +74,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/check/**")
                 .permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+        .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
 
         http.headers().frameOptions().disable();
 

@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import java.util.Properties;
@@ -19,6 +20,9 @@ import java.util.UUID;
 @Controller
 @SpringBootApplication
 public class Practica13Application {
+
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Practica13Application.class, args);
@@ -46,7 +50,7 @@ public class Practica13Application {
 	CommandLineRunner run(UserService userService) {
 		return args -> {
 
-			User user = new User(UUID.randomUUID().toString(), "juandiegolopezve@gmail.com", "123");
+			User user = new User(UUID.randomUUID().toString(), "a", "a");
 
 			userService.saved(user);
 		};
