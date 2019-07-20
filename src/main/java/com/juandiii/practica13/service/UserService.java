@@ -20,8 +20,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public User saved(User user) {
-        emailService.sendSimpleMessage(user.getUsername(), "Barcamp, gracias por inscribirse!","Hola! "+ user.getUsername() + " \nLa contraseña es: " + user.getPassword() + " \n Para acceder a la página es: http://testing.com/");
+//        emailService.sendSimpleMessage(user.getUsername(), "Barcamp, gracias por inscribirse!","Hola! "+ user.getUsername() + " \nLa contraseña es: " + user.getPassword() + " \n Para acceder a la página es: http://testing.com/");
         return userRepository.save(user);
     }
 }

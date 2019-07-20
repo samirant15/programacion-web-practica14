@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Práctica 14 - Programación Web</title>
@@ -16,15 +17,16 @@
 <div class="card" style="margin-left: 25%;margin-right: 25%;margin-top: 10%;">
     <div class="card-body">
         <h2 class="card-title">LOG IN</h2>
-        <form>
+        <form th:action="@{/check}" th:object="${user}" method="POST">
             <div class="form-group">
                 <label>Email:</label>
-                <input class="form-control form-control-lg" type="text" placeholder="example@example.com" id="email">
+                <input class="form-control form-control-lg" type="text" th:field="*{username}" th:placeholder="email" name="username">
             </div>
             <div class="form-group">
-                <label>Password:</label><input class="form-control form-control-lg" type="password" placeholder="password" id="password"></div>
+                <label>Password:</label><input class="form-control form-control-lg" type="password"  th:field="*{password}" th:placeholder="password" name="password"></div>
+            <button type="submit" class="float-right" style="align-self: center;">ENTER</button>
         </form>
-        <a href="#" class="float-right" style="align-self: center;">ENTER</a>
+
     </div>
 </div>
 
