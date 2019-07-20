@@ -1,6 +1,7 @@
 package com.juandiii.practica13.controller;
 
 import com.juandiii.practica13.data.User;
+import com.juandiii.practica13.security.CurrentUser;
 import com.juandiii.practica13.security.UserPrincipal;
 import com.juandiii.practica13.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +26,17 @@ public class LoginController {
     AuthenticationManager authenticationManager;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView index() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-//        System.out.println(auth.isAuthenticated());
-//
-//        if (auth.isAuthenticated()) {
-//            UserPrincipal userLogged = (UserPrincipal) auth.getPrincipal();
-//            System.out.println(userLogged.getUsername());
-//        }
+    public ModelAndView index(@CurrentUser UserPrincipal currentUser) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("index");
 
+        if (currentUser == null) {
+            User user = new User();
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("index");
+        } else {
+            modelAndView.setViewName("form");
+            modelAndView.addObject("user", currentUser);
+        }
         return modelAndView;
     }
 

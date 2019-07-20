@@ -29,7 +29,7 @@ dependencies {
 //	implementation 'org.hibernate:hibernate-core'
 //	implementation 'org.hibernate:hibernate-entitymanager'
 //	implementation('org.springframework.session:spring-session-core')
-//	implementation('org.springframework.session:spring-session-hazelcast')
+	implementation('org.springframework.session:spring-session-hazelcast')
 //	implementation('com.hazelcast:hazelcast-hibernate5')
 //	implementation 'org.springframework:spring-context-support:5.1.8.RELEASE'
 	implementation group: 'com.h2database', name: 'h2', version: '1.4.192'
