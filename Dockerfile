@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk8:jre
+FROM adoptopenjdk/openjdk8:alpine-jre
 
 VOLUME /app
 
