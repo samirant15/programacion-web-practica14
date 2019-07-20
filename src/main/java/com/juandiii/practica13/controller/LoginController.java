@@ -1,5 +1,6 @@
 package com.juandiii.practica13.controller;
 
+import com.juandiii.practica13.dao.FormDao;
 import com.juandiii.practica13.data.User;
 import com.juandiii.practica13.security.CurrentUser;
 import com.juandiii.practica13.security.UserPrincipal;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.SecureRandom;
+import java.util.Random;
+import java.util.UUID;
 
 @Controller
 public class LoginController {
@@ -24,6 +28,9 @@ public class LoginController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    private static final Random RANDOM = new SecureRandom();
+    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(@CurrentUser UserPrincipal currentUser) {
@@ -36,6 +43,8 @@ public class LoginController {
         } else {
             modelAndView.setViewName("form");
             modelAndView.addObject("user", currentUser);
+            FormDao form = new FormDao();
+            modelAndView.addObject("form", form);
         }
         return modelAndView;
     }
@@ -72,5 +81,24 @@ public class LoginController {
         modelAndView.setViewName("form");
 
         return "redirect:/form";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@Valid User user, BindingResult result) {
+        System.out.println("Register: " + user.getUsername());
+        user.setId(UUID.randomUUID().toString());
+        user.setPassword(generatePassword());
+
+        userService.saved(user);
+
+        return "redirect:/form";
+    }
+
+    private static String generatePassword() {
+        StringBuilder returnValue = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) {
+            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+        }
+        return new String(returnValue);
     }
 }

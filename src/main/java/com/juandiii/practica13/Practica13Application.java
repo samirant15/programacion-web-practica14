@@ -34,7 +34,7 @@ public class Practica13Application {
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 
-		mailSender.setUsername("juandiegolopezve@gmail.com");
+		mailSender.setUsername("samirant15@gmail.com");
 		mailSender.setPassword("");
 
 		Properties props = mailSender.getJavaMailProperties();
@@ -50,9 +50,9 @@ public class Practica13Application {
 	CommandLineRunner run(UserService userService) {
 		return args -> {
 
-			User user = new User(UUID.randomUUID().toString(), "a", "a");
+//			User user = new User(UUID.randomUUID().toString(), "a", "a");
 
-			userService.saved(user);
+//			userService.saved(user);
 		};
 	};
 

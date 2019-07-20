@@ -19,7 +19,7 @@
     </nav>
     <div class="card" style="margin-left: 25%;margin-right: 25%;margin-top: 5%;">
         <div class="card-body">
-            <form>
+            <form th:action="@{/submit}" th:object="${form}" method="post">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <h2 class="card-title">FORM</h2>
@@ -32,12 +32,8 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="select_1">Seleccionar</label>
-                                    <select class="form-control" id="select_1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select class="form-control" id="select_1" th:field="*{question1}">
+                                        <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -60,12 +56,8 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="select_2">Seleccionar</label>
-                                    <select class="form-control" id="select_2">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select class="form-control" id="select_2" th:field="*{question2}">
+                                        <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -88,12 +80,8 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="select_3">Seleccionar</label>
-                                    <select class="form-control" id="select_3">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select class="form-control" id="select_3" th:field="*{question3}">
+                                        <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -113,12 +101,12 @@
                     <li class="list-group-item">
                         <h5>D. ¿Tiene algún comentario para los organizadores?</h5>
                         <div class="row">
-                            <textarea class="form-control" id="text_area" rows="5"></textarea>
+                            <textarea class="form-control" id="text_area" rows="5" th:field="*{question4}"></textarea>
                         </div>
                     </li>
                 </ul>
+                <button type="submit" class="btn btn-primary btn-block">ENVIAR</button>
             </form>
-            <button type="button" class="btn btn-primary btn-block">ENVIAR</button>
         </div>
     </div>
 </body>

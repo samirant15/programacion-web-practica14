@@ -27,26 +27,29 @@
                 <p style="font-size: 24px"><span class="badge badge-danger">C.</span> ¿Las instalaciones del evento fueron confortables para usted?</p>
                 <div id="piechart" style="align-self: center"></div>
                 <p style="font-size: 24px"><span class="badge badge-warning">D.</span> ¿Tiene algún comentario para los organizadores?</p>
-                <textarea class="form-control" id="exampleTextarea" rows="5" readonly></textarea>
+                <textarea class="form-control" id="exampleTextarea" rows="5" th:text="${form.question4}" readonly></textarea>
             </ul>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script type="text/javascript">
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var form = /*[[${form}]]*/ 'default';
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
-            ['A', 8],
-            ['b', 2],
-            ['C', 4],
+            ['A', form.question1],
+            ['b', form.question2],
+            ['C', form.question3],
         ]);
         var options = {'title':'RESULTS', 'width':800, 'height':600, colors: ['#28b62c','#158cba', '#ff4136']};
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
     }
+    /*]]>*/
 </script>
 </html>

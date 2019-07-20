@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 14 - Programación Web</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="bs-component">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">PWEB FORMS</a>
+        <a class="navbar-brand" href="#" style="right: 0;position: fixed;" th:text="${user.username}"></a>
+    </nav>
+    <div class="card" style="margin-left: 25%;margin-right: 25%;margin-top: 5%;">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h2 class="card-title">LO SENTIMOS... </h2>
+                </li>
+            </ul>
+            <ul class="list-group list-group-flush">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">OOOPS...</h1>
+                        <p class="lead">Parece que ya usted completó su formulario! <a href="/chart">Ver resultados</a></p>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

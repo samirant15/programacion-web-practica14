@@ -29,9 +29,11 @@ public class UserService {
     }
 
     public User saved(User user) {
+        System.out.println("Enviando correo de bienvenida a " + user.getUsername());
+        String plainPassword = user.getPassword();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
-//        emailService.sendSimpleMessage(user.getUsername(), "Barcamp, gracias por inscribirse!","Hola! "+ user.getUsername() + " \nLa contraseña es: " + user.getPassword() + " \n Para acceder a la página es: http://testing.com/");
+        emailService.sendSimpleMessage(user.getUsername(), "PWEB FORMS, gracias por inscribirse!","Hola! "+ user.getUsername() + " \nLa contraseña es: " + plainPassword + " \n Para acceder a la página es: http://server-dev/");
         return userRepository.save(user);
     }
 }

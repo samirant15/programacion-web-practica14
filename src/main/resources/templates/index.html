@@ -14,20 +14,74 @@
 </head>
 <body>
 
-<div class="card" style="margin-left: 25%;margin-right: 25%;margin-top: 10%;">
+<div class="card" id="loginCard" style="margin-left: 25%;margin-right: 25%;margin-top: 10%;">
     <div class="card-body">
-        <h2 class="card-title">LOG IN</h2>
-        <form th:action="@{/check}" th:object="${user}" method="post">
-            <div class="form-group">
-                <label>Email:</label>
-                <input class="form-control form-control-lg" type="text" th:field="*{username}" th:placeholder="email" name="username">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h2 class="card-title">LOG IN</h2>
+            </li>
+        </ul>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <form th:action="@{/check}" th:object="${user}" method="post">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control form-control-lg" type="text" th:field="*{username}" th:placeholder="email" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label><input class="form-control form-control-lg" type="password"  th:field="*{password}" th:placeholder="password" name="password"></div>
+                    <button type="submit" class="btn btn-primary btn-block" style="align-self: center;">ENTER</button>
+                </form>
+            </li>
+        </ul>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <p>No tienes una cuenta?</p>
+                <button type="button" id="toggleModal" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">REGISTRARME</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="modal" id="registerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="contentRegister">
+            <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title">REGISTRO</h5>
             </div>
-            <div class="form-group">
-                <label>Password:</label><input class="form-control form-control-lg" type="password"  th:field="*{password}" th:placeholder="password" name="password"></div>
-            <button type="submit" class="btn btn-primary btn-block" style="align-self: center;">ENTER</button>
-        </form>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control form-control-lg" type="text" th:field="*{username}" th:placeholder="email" name="username">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="submitRegister" class="btn btn-primary">ENVIAR</button>
+                <button type="button" id="cancelRegister" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+            </div>
+            </form>
+        </div>
     </div>
 </div>
 
 </body>
+<script>
+    $(function() {
+        $("#toggleModal").click(function () {
+            $('#registerModal').toggle();
+            $('#loginCard').toggle();
+        });
+    })
+    $(function() {
+        $("#cancelRegister").click(function () {
+            $('#registerModal').toggle();
+            $('#loginCard').toggle();
+        });
+    })
+    $(function() {
+        $("#submitRegister").click(function () {
+            alert("LISTO! Revise su bandeja de entrada de su email!")
+        });
+    })
+</script>
 </html>

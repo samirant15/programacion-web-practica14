@@ -11,7 +11,7 @@ public class FormDao {
     private Integer question1;
     private Integer question2;
     private Integer question3;
-    private Integer question4;
+    private String question4;
     private String userId;
 
 }
