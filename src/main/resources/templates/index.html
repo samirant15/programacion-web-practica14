@@ -17,7 +17,7 @@
 <div class="card" style="margin-left: 25%;margin-right: 25%;margin-top: 10%;">
     <div class="card-body">
         <h2 class="card-title">LOG IN</h2>
-        <form th:action="@{/check}" th:object="${user}" method="POST">
+        <form th:action="@{/check}" th:object="${user}" method="post">
             <div class="form-group">
                 <label>Email:</label>
                 <input class="form-control form-control-lg" type="text" th:field="*{username}" th:placeholder="email" name="username">

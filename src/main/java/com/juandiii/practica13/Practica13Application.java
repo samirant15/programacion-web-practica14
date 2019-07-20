@@ -2,7 +2,10 @@ package com.juandiii.practica13;
 
 //import com.hazelcast.cache.HazelcastCacheManager;
 //import com.hazelcast.core.HazelcastInstance;
+import com.juandiii.practica13.data.User;
+import com.juandiii.practica13.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 
 import java.util.Properties;
+import java.util.UUID;
 
 @Controller
 @SpringBootApplication
@@ -37,6 +41,16 @@ public class Practica13Application {
 
 		return mailSender;
 	}
+
+	@Bean
+	CommandLineRunner run(UserService userService) {
+		return args -> {
+
+			User user = new User(UUID.randomUUID().toString(), "juandiegolopezve@gmail.com", "123");
+
+			userService.saved(user);
+		};
+	};
 
 
 //	@Bean
