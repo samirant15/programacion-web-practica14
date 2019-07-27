@@ -69,6 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/login/**")
                 .permitAll()
+                .antMatchers("/logout/**")
+                .permitAll()
                 .antMatchers("/registration/**")
                 .permitAll()
                 .antMatchers("/register/**")
@@ -87,6 +89,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.headers().frameOptions().disable();
 
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true);
 
 //        http.
 //                authorizeRequests()
