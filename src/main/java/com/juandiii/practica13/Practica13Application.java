@@ -34,8 +34,8 @@ public class Practica13Application {
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 
-		mailSender.setUsername("samirant15@gmail.com");
-		mailSender.setPassword("");
+		mailSender.setUsername("juandiegolopezve@gmail.com");
+		mailSender.setPassword(System.getenv("PASSWORD_MAIL"));
 
 		Properties props = mailSender.getJavaMailProperties();
 		props.put("mail.transport.protocol", "smtp");
